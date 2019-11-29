@@ -19,56 +19,82 @@ class App extends Component {
 
 
       constructor(props) {
-            super(props);
+            super();
             
-            this.state = {products:[]};
+            
             
             //bind functions
-            this.loadData = this.loadData.bind(this);
-            this.productList = this.productList.bind(this);
+          
+				
+						this.state = {
+				scrolled: true,
+			};
             
-            this.loadData();
-            
-      }
+  }
+				
+	componentDidMount(){
+		window.addEventListener('scroll', () =>{
+			const isTop = window.scrollY < 100;
+				if(isTop !== true) {
+					this.setState({ scrolled: true });
+				} else{
+					this.setState({ scrolled: false });
+				}
+		});
+	}
+
+	componentWillUnmount(){
+		window.removeEventListener('scroll');
+	}
 
 
-      loadData = () => {
-            var self = this;
-            http.getProducts().then(data => {
-                  self.setState({products: data})
-            }, err => {
+     
 
-            });
-      }
-
-      productList = () => {
-            const list = this.state.products.map((product) => 
-                  <div className="col-sm-4 Products" key={product._id}> 
-                        <Product title={product.title} price = {product.price} imgurl={product.imgurl} />
-                  </div>
-                  
-                  
-            );
-            return(list);
-      }
+			
       render() {
             return ( 
                   <div className = "App">
+								
                   <header className = "App-header" >
-                  <img src = {
-                        logo
-                  }
-                        
-                      
+                  <img src = { logo }   
                     
                   className = "App-logo"
                   alt = "logo">
                   </img>
+										
                   </header>
+								<nav className={this.state.scrolled ? ' navbar nv navbar-expand-lg navbar-dark bg-dark  scrolled' : 'navbar-expand-lg navbar-dark bg-dark'}>
+            <a className="navbar-brand" href="#"><span><img src="../img/x-mark.png" className="img-fluid"></img></span></a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul className="navbar-nav">
+                    <li className="nav-item active">
+                        <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">Videos</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#">Photos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a className="dropdown-item" href="#">Devices</a>
+                            <a className="dropdown-item" href="#">Parts</a>
+                            <a className="dropdown-item" href="#">Documentation</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
                   <div className="container-fluid App-main">
+										 
                         <div className="row">
                               <div className="col-sm-8">
-                                    <div className="row">{this.productList()}</div>
+                                    <div className="row"></div>
                                     
                               </div>
                               
