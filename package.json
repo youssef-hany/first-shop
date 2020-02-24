@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "shop-web",
   "version": "0.1.0",
   "private": true,
@@ -29,5 +30,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+=======
+  "name": "first-Shop",
+  "version": "1.0.0",
+  "description": "First example",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/youssef-hany/Projects/tree/first-shop"
+  },
+  "author": "Youssef Hany",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.11"
+>>>>>>> f2a59812766d75187fc57114206273ea35adbc67
   }
 }
